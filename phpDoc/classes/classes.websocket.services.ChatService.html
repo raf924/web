@@ -1,0 +1,2890 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta charset="utf-8"/>
+    <title>PHP lib</title>
+    <meta name="author" content=""/>
+    <meta name="description" content=""/>
+
+    <link href="../css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/prism.css" rel="stylesheet" media="all"/>
+    <link href="../css/template.css" rel="stylesheet" media="all"/>
+    
+    <!--[if lt IE 9]>
+    <script src="../js/html5.js"></script>
+    <![endif]-->
+    <script src="../js/jquery-1.11.0.min.js"></script>
+    <script src="../js/ui/1.10.4/jquery-ui.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery.smooth-scroll.js"></script>
+    <script src="../js/prism.min.js"></script>
+    <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
+    <script type="text/javascript">
+    function loadExternalCodeSnippets() {
+        Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
+            var src = pre.getAttribute('data-src');
+            var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
+            var language = 'php';
+
+            var code = document.createElement('code');
+            code.className = 'language-' + language;
+
+            pre.textContent = '';
+
+            code.textContent = 'Loading…';
+
+            pre.appendChild(code);
+
+            var xhr = new XMLHttpRequest();
+
+            xhr.open('GET', src, true);
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+
+                    if (xhr.status < 400 && xhr.responseText) {
+                        code.textContent = xhr.responseText;
+
+                        Prism.highlightElement(code);
+                    }
+                    else if (xhr.status >= 400) {
+                        code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                    }
+                    else {
+                        code.textContent = '✖ Error: File does not exist or is empty';
+                    }
+                }
+            };
+
+            xhr.send(null);
+        });
+    }
+
+    $(document).ready(function(){
+        loadExternalCodeSnippets();
+    });
+    $('#source-view').on('shown', function () {
+        loadExternalCodeSnippets();
+    })
+</script>
+
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <i class="icon-ellipsis-vertical"></i>
+            </a>
+            <a class="brand" href="../index.html">PHP lib</a>
+
+            <div class="nav-collapse">
+                <ul class="nav pull-right">
+                                        <li class="dropdown">
+                        <a href="../index.html" class="dropdown-toggle" data-toggle="dropdown">
+                            API Documentation <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                                                        <li><a href="../namespaces/abstracts.html">\abstracts</a></li>
+                                                        <li><a href="../namespaces/classes.html">\classes</a></li>
+                                                        <li><a href="../namespaces/interfaces.html">\interfaces</a></li>
+                                                        <li><a href="../namespaces/tests.html">\tests</a></li>
+                                                        <li><a href="../namespaces/traits.html">\traits</a></li>
+                                                    </ul>
+                    </li>
+                                        <li class="dropdown" id="charts-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Charts <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../graphs/class.html">
+                                    <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" id="reports-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Reports <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="../reports/errors.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">12</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/markers.html">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">16</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="../reports/deprecated.html">
+                                                                                                            <i class="icon-list-alt"></i>&#160;Deprecated <span class="label label-info pull-right">0</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<div class="go_to_top">-->
+    <!--<a href="#___" style="color: inherit">Back to top&#160;&#160;<i class="icon-upload icon-white"></i></a>-->
+    <!--</div>-->
+</div>
+
+<div id="___" class="container-fluid">
+        <section class="row-fluid">
+        <div class="span2 sidebar">
+                                <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-367766334"></a>
+                                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
+            </div>
+            <div id="namespace-367766334" class="accordion-body collapse in">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-865074767"></a>
+                                <a href="../namespaces/abstracts.html" style="margin-left: 30px; padding-left: 0">abstracts</a>
+            </div>
+            <div id="namespace-865074767" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/abstracts.AbstractController.html">AbstractController</a></li>
+                                                    <li class="class"><a href="../classes/abstracts.AbstractLogger.html">AbstractLogger</a></li>
+                                                    <li class="class"><a href="../classes/abstracts.API.html">API</a></li>
+                                                    <li class="class"><a href="../classes/abstracts.Collection.html">Collection</a></li>
+                                                    <li class="class"><a href="../classes/abstracts.Entity.html">Entity</a></li>
+                                                    <li class="class"><a href="../classes/abstracts.EntityManager.html">EntityManager</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-422037229"></a>
+                                <a href="../namespaces/classes.html" style="margin-left: 30px; padding-left: 0">classes</a>
+            </div>
+            <div id="namespace-422037229" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1935716933"></a>
+                                <a href="../namespaces/classes.console.html" style="margin-left: 30px; padding-left: 0">console</a>
+            </div>
+            <div id="namespace-1935716933" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/classes.console.Console.html">Console</a></li>
+                                                    <li class="class"><a href="../classes/classes.console.ConsoleColors.html">ConsoleColors</a></li>
+                                                    <li class="class"><a href="../classes/classes.console.Deployment.html">Deployment</a></li>
+                                                    <li class="class"><a href="../classes/classes.console.Orm.html">Orm</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-78625874"></a>
+                                <a href="../namespaces/classes.entities.html" style="margin-left: 30px; padding-left: 0">entities</a>
+            </div>
+            <div id="namespace-78625874" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/classes.entities.User.html">User</a></li>
+                                                    <li class="class"><a href="../classes/classes.entities.UsersChatRights.html">UsersChatRights</a></li>
+                                                    <li class="class"><a href="../classes/classes.entities.UsersRights.html">UsersRights</a></li>
+                                                    <li class="class"><a href="../classes/classes.entities.UserStatistics.html">UserStatistics</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-2070015710"></a>
+                                <a href="../namespaces/classes.entitiesCollection.html" style="margin-left: 30px; padding-left: 0">entitiesCollection</a>
+            </div>
+            <div id="namespace-2070015710" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/classes.entitiesCollection.UserCollection.html">UserCollection</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-164735306"></a>
+                                <a href="../namespaces/classes.entitiesManager.html" style="margin-left: 30px; padding-left: 0">entitiesManager</a>
+            </div>
+            <div id="namespace-164735306" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/classes.entitiesManager.GlobalEntityManager.html">GlobalEntityManager</a></li>
+                                                    <li class="class"><a href="../classes/classes.entitiesManager.UserEntityManager.html">UserEntityManager</a></li>
+                                                    <li class="class"><a href="../classes/classes.entitiesManager.UsersChatRightsEntityManager.html">UsersChatRightsEntityManager</a></li>
+                                                    <li class="class"><a href="../classes/classes.entitiesManager.UsersRightsEntityManager.html">UsersRightsEntityManager</a></li>
+                                                    <li class="class"><a href="../classes/classes.entitiesManager.UserStatisticsEntityManager.html">UserStatisticsEntityManager</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1089779024"></a>
+                                <a href="../namespaces/classes.fileManager.html" style="margin-left: 30px; padding-left: 0">fileManager</a>
+            </div>
+            <div id="namespace-1089779024" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/classes.fileManager.FtpFileManager.html">FtpFileManager</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-754452011"></a>
+                                <a href="../namespaces/classes.logger.html" style="margin-left: 30px; padding-left: 0">logger</a>
+            </div>
+            <div id="namespace-754452011" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/classes.logger.ConsoleLogger.html">ConsoleLogger</a></li>
+                                                    <li class="class"><a href="../classes/classes.logger.FileLogger.html">FileLogger</a></li>
+                                                    <li class="class"><a href="../classes/classes.logger.LogLevel.html">LogLevel</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-734791359"></a>
+                                <a href="../namespaces/classes.websocket.html" style="margin-left: 30px; padding-left: 0">websocket</a>
+            </div>
+            <div id="namespace-734791359" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1006806646"></a>
+                                <a href="../namespaces/classes.websocket.services.html" style="margin-left: 30px; padding-left: 0">services</a>
+            </div>
+            <div id="namespace-1006806646" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/classes.websocket.services.ChatService.html">ChatService</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/classes.websocket.ServerRequestHandler.html">ServerRequestHandler</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/classes.AssertionErrorManager.html">AssertionErrorManager</a></li>
+                                                    <li class="class"><a href="../classes/classes.Autoloader.html">Autoloader</a></li>
+                                                    <li class="class"><a href="../classes/classes.Benchmark.html">Benchmark</a></li>
+                                                    <li class="class"><a href="../classes/classes.DataBase.html">DataBase</a></li>
+                                                    <li class="class"><a href="../classes/classes.ExceptionManager.html">ExceptionManager</a></li>
+                                                    <li class="class"><a href="../classes/classes.ImagesManager.html">ImagesManager</a></li>
+                                                    <li class="class"><a href="../classes/classes.IniManager.html">IniManager</a></li>
+                                                    <li class="class"><a href="../classes/classes.LoggerManager.html">LoggerManager</a></li>
+                                                    <li class="class"><a href="../classes/classes.PDOStatementCustom.html">PDOStatementCustom</a></li>
+                                                    <li class="class"><a href="../classes/classes.ThrowableManager.html">ThrowableManager</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-593348455"></a>
+                                <a href="../namespaces/interfaces.html" style="margin-left: 30px; padding-left: 0">interfaces</a>
+            </div>
+            <div id="namespace-593348455" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-625563319"></a>
+                                <a href="../namespaces/interfaces.http.html" style="margin-left: 30px; padding-left: 0">http</a>
+            </div>
+            <div id="namespace-625563319" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/interfaces.http.MessageInterface.html">MessageInterface</a></li>
+                                                    <li class="interface"><a href="../classes/interfaces.http.RequestInterface.html">RequestInterface</a></li>
+                                                    <li class="interface"><a href="../classes/interfaces.http.ResponseInterface.html">ResponseInterface</a></li>
+                                                    <li class="interface"><a href="../classes/interfaces.http.ServerRequestInterface.html">ServerRequestInterface</a></li>
+                                                    <li class="interface"><a href="../classes/interfaces.http.StreamInterface.html">StreamInterface</a></li>
+                                                    <li class="interface"><a href="../classes/interfaces.http.UploadedFileInterface.html">UploadedFileInterface</a></li>
+                                                    <li class="interface"><a href="../classes/interfaces.http.UriInterface.html">UriInterface</a></li>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                    <li class="interface"><a href="../classes/interfaces.FileManagerInterface.html">FileManagerInterface</a></li>
+                                                    <li class="interface"><a href="../classes/interfaces.LoggerInterface.html">LoggerInterface</a></li>
+                                                    <li class="interface"><a href="../classes/interfaces.ServiceInterface.html">ServiceInterface</a></li>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1225807470"></a>
+                                <a href="../namespaces/tests.html" style="margin-left: 30px; padding-left: 0">tests</a>
+            </div>
+            <div id="namespace-1225807470" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                                                    <li class="class"><a href="../classes/tests.Traits.html">Traits</a></li>
+                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                                                    <div class="accordion" style="margin-bottom: 0">
+        <div class="accordion-group">
+            <div class="accordion-heading">
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-18067151"></a>
+                                <a href="../namespaces/traits.html" style="margin-left: 30px; padding-left: 0">traits</a>
+            </div>
+            <div id="namespace-18067151" class="accordion-body collapse ">
+                <div class="accordion-inner">
+
+                    
+                    <ul>
+                                                                            <li class="trait"><a href="../classes/traits.EchoTrait.html">EchoTrait</a></li>
+                                                    <li class="trait"><a href="../classes/traits.FiltersTrait.html">FiltersTrait</a></li>
+                                                    <li class="trait"><a href="../classes/traits.PrettyOutputTrait.html">PrettyOutputTrait</a></li>
+                                                    <li class="trait"><a href="../classes/traits.ShortcutsTrait.html">ShortcutsTrait</a></li>
+                                                                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    
+                    <ul>
+                                                                                            </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        </div>
+    </section>
+    <section class="row-fluid">
+        <div class="span10 offset2">
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <nav>
+                                                <a href="../namespaces/classes.websocket.services.html">\classes\websocket\services</a> <i class="icon-level-up"></i>
+                                            </nav>
+                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
+
+                    <h1><small>\classes\websocket\services</small>ChatService</h1>
+                    <p><em>Chat services to manage a chat with a WebSocket server</em></p>
+                    
+                    
+                                        
+                    <section id="summary">
+                        <h2>Summary</h2>
+                        <section class="row-fluid heading">
+                            <section class="span4">
+                                <a href="#methods">Methods</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#properties">Properties</a>
+                            </section>
+                            <section class="span4">
+                                <a href="#constants">Constants</a>
+                            </section>
+                        </section>
+                        <section class="row-fluid public">
+                            <section class="span4">
+                                                                    <a href="../classes/traits.ShortcutsTrait.html#method_setIfIsSet" class="">setIfIsSet()</a><br />
+                                                                    <a href="../classes/traits.ShortcutsTrait.html#method_setIfIsSetAndTrim" class="">setIfIsSetAndTrim()</a><br />
+                                                                    <a href="../classes/traits.ShortcutsTrait.html#method_inSubArray" class="">inSubArray()</a><br />
+                                                                    <a href="../classes/traits.PrettyOutputTrait.html#method_smartAlign" class="">smartAlign()</a><br />
+                                                                    <a href="../classes/traits.PrettyOutputTrait.html#method_prettyArray" class="">prettyArray()</a><br />
+                                                                    <a href="../classes/traits.PrettyOutputTrait.html#method_formatVariable" class="">formatVariable()</a><br />
+                                                                    <a href="../classes/traits.PrettyOutputTrait.html#method_getMaxSize" class="">getMaxSize()</a><br />
+                                                                    <a href="../classes/traits.PrettyOutputTrait.html#method_md5Array" class="">md5Array()</a><br />
+                                                                    <a href="../classes/classes.websocket.services.ChatService.html#method___construct" class="">__construct()</a><br />
+                                                                    <a href="../classes/classes.websocket.services.ChatService.html#method_process" class="">process()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/traits.PrettyOutputTrait.html#property_beautifullIndentMaxSize" class="">$beautifullIndentMaxSize</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No constants found</em>
+                                                            </section>
+                        </section>
+                        <section class="row-fluid protected">
+                            <section class="span4">
+                                                                    <em>No protected methods found</em>
+                                                            </section>
+                            <section class="span4">
+                                                                    <em>No protected properties found</em>
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                        <section class="row-fluid private">
+                            <section class="span4">
+                                                                    <a href="../classes/traits.PrettyOutputTrait.html#method_setMaxSize" class="">setMaxSize()</a><br />
+                                                                    <a href="../classes/classes.websocket.services.ChatService.html#method_treatDataFromServer" class="">treatDataFromServer()</a><br />
+                                                                    <a href="../classes/classes.websocket.services.ChatService.html#method_connectUser" class="">connectUser()</a><br />
+                                                                    <a href="../classes/classes.websocket.services.ChatService.html#method_createRoom" class="">createRoom()</a><br />
+                                                                    <a href="../classes/classes.websocket.services.ChatService.html#method_sendMessage" class="">sendMessage()</a><br />
+                                                                    <a href="../classes/classes.websocket.services.ChatService.html#method_getHistoric" class="">getHistoric()</a><br />
+                                                                    <a href="../classes/classes.websocket.services.ChatService.html#method_kickUser" class="">kickUser()</a><br />
+                                                                    <a href="../classes/classes.websocket.services.ChatService.html#method_banUser" class="">banUser()</a><br />
+                                                                    <a href="../classes/classes.websocket.services.ChatService.html#method_updateRoomUserRight" class="">updateRoomUserRight()</a><br />
+                                                                    <a href="../classes/classes.websocket.services.ChatService.html#method_setRoomInfo" class="">setRoomInfo()</a><br />
+                                                                    <a href="../classes/classes.websocket.services.ChatService.html#method_disconnectUserFromRoom" class="">disconnectUserFromRoom()</a><br />
+                                                                    <a href="../classes/classes.websocket.services.ChatService.html#method_getRoomsInfo" class="">getRoomsInfo()</a><br />
+                                                                    <a href="../classes/classes.websocket.services.ChatService.html#method_updateRoomUsers" class="">updateRoomUsers()</a><br />
+                                                                    <a href="../classes/classes.websocket.services.ChatService.html#method_updateRoomUsersRights" class="">updateRoomUsersRights()</a><br />
+                                                                    <a href="../classes/classes.websocket.services.ChatService.html#method_updateRoomUsersBanned" class="">updateRoomUsersBanned()</a><br />
+                                                                    <a href="../classes/classes.websocket.services.ChatService.html#method_disconnectUserFromRoomAction" class="">disconnectUserFromRoomAction()</a><br />
+                                                                    <a href="../classes/classes.websocket.services.ChatService.html#method_disconnectUser" class="">disconnectUser()</a><br />
+                                                                    <a href="../classes/classes.websocket.services.ChatService.html#method_addUserRoom" class="">addUserRoom()</a><br />
+                                                                    <a href="../classes/classes.websocket.services.ChatService.html#method_checkPrivateRoomPassword" class="">checkPrivateRoomPassword()</a><br />
+                                                                    <a href="../classes/classes.websocket.services.ChatService.html#method_pseudonymIsInRoom" class="">pseudonymIsInRoom()</a><br />
+                                                                    <a href="../classes/classes.websocket.services.ChatService.html#method_isPseudonymUsabled" class="">isPseudonymUsabled()</a><br />
+                                                                    <a href="../classes/classes.websocket.services.ChatService.html#method_getUserHashByPseudonym" class="">getUserHashByPseudonym()</a><br />
+                                                                    <a href="../classes/classes.websocket.services.ChatService.html#method_isRegistered" class="">isRegistered()</a><br />
+                                                                    <a href="../classes/classes.websocket.services.ChatService.html#method_sendMessageToUser" class="">sendMessageToUser()</a><br />
+                                                                    <a href="../classes/classes.websocket.services.ChatService.html#method_sendMessageToRoom" class="">sendMessageToRoom()</a><br />
+                                                                    <a href="../classes/classes.websocket.services.ChatService.html#method_filterConversations" class="">filterConversations()</a><br />
+                                                                    <a href="../classes/classes.websocket.services.ChatService.html#method_saveRoom" class="">saveRoom()</a><br />
+                                                                    <a href="../classes/classes.websocket.services.ChatService.html#method_getRoomInfo" class="">getRoomInfo()</a><br />
+                                                                    <a href="../classes/classes.websocket.services.ChatService.html#method_loadRoom" class="">loadRoom()</a><br />
+                                                                    <a href="../classes/classes.websocket.services.ChatService.html#method_updateHistoric" class="">updateHistoric()</a><br />
+                                                                    <a href="../classes/classes.websocket.services.ChatService.html#method_saveHistoric" class="">saveHistoric()</a><br />
+                                                                    <a href="../classes/classes.websocket.services.ChatService.html#method_loadHistoric" class="">loadHistoric()</a><br />
+                                                                    <a href="../classes/classes.websocket.services.ChatService.html#method_getHistoricPart" class="">getHistoricPart()</a><br />
+                                                                    <a href="../classes/classes.websocket.services.ChatService.html#method_getLastPartNumber" class="">getLastPartNumber()</a><br />
+                                                                    <a href="../classes/classes.websocket.services.ChatService.html#method_setLastPartNumber" class="">setLastPartNumber()</a><br />
+                                                                    <a href="../classes/classes.websocket.services.ChatService.html#method_getRoomsName" class="">getRoomsName()</a><br />
+                                                                    <a href="../classes/classes.websocket.services.ChatService.html#method_setRoomsName" class="">setRoomsName()</a><br />
+                                                            </section>
+                            <section class="span4">
+                                                                    <a href="../classes/classes.websocket.services.ChatService.html#property_chatService" class="">$chatService</a><br />
+                                                                    <a href="../classes/classes.websocket.services.ChatService.html#property_server" class="">$server</a><br />
+                                                                    <a href="../classes/classes.websocket.services.ChatService.html#property_savingDir" class="">$savingDir</a><br />
+                                                                    <a href="../classes/classes.websocket.services.ChatService.html#property_maxMessagesPerFile" class="">$maxMessagesPerFile</a><br />
+                                                                    <a href="../classes/classes.websocket.services.ChatService.html#property_roomsName" class="">$roomsName</a><br />
+                                                                    <a href="../classes/classes.websocket.services.ChatService.html#property_roomsNamePath" class="">$roomsNamePath</a><br />
+                                                                    <a href="../classes/classes.websocket.services.ChatService.html#property_usersRooms" class="">$usersRooms</a><br />
+                                                                    <a href="../classes/classes.websocket.services.ChatService.html#property_rooms" class="">$rooms</a><br />
+                                                            </section>
+                            <section class="span4">
+                                <em>N/A</em>
+                            </section>
+                        </section>
+                    </section>
+                </div>
+                <aside class="span4 detailsbar">
+                                        
+                    
+                    <dl>
+                        <dt>File</dt>
+                            <dd><a href="../files/classes.websocket.services.ChatService.html"><div class="path-wrapper">classes\websocket\services\ChatService.php</div></a></dd>
+                                                <dt>Package</dt>
+                            <dd><div class="namespace-wrapper">Default</div></dd>
+                                                <dt>Class hierarchy</dt>
+                            <dd class="hierarchy">
+                                                                                                                                                                                                                                                                                                
+                                        <div class="namespace-wrapper">\classes\websocket\ServicesDispatcher</div>
+                                                                                                    <div class="namespace-wrapper">\classes\websocket\services\ChatService</div>
+                            </dd>
+
+                                                                            <dt>Implements</dt>
+                                                        <dd><a href="../classes/interfaces.ServiceInterface.html"><div class="namespace-wrapper">\interfaces\ServiceInterface</div></a></dd>
+                        
+                                                                                    <dt>Uses traits</dt>
+                                                        <dd>
+                                <a href="../classes/traits.ShortcutsTrait.html">                                    <div class="namespace-wrapper">\traits\ShortcutsTrait</div>
+                                </a>                            </dd>
+                                                                                <dd>
+                                <a href="../classes/traits.PrettyOutputTrait.html">                                    <div class="namespace-wrapper">\traits\PrettyOutputTrait</div>
+                                </a>                            </dd>
+                        
+                        
+                        
+                                                                        </dl>
+                    <h2>Tags</h2>
+                    <table class="table table-condensed">
+                                            <tr>
+                            <th>
+                                todo
+                            </th>
+                            <td>
+                                                                    <p>Refacto all this class with Icicle lib [in progress]</p>
+                                                            </td>
+                        </tr>
+                                        </table>
+                </aside>
+            </div>
+
+                        
+                                    <a id="properties" name="properties"></a>
+            <div class="row-fluid">
+                <div class="span8 content class">
+                    <h2>Properties</h2>
+                </div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_beautifullIndentMaxSize" name="property_beautifullIndentMaxSize" class="anchor"></a>
+            <article class="property">
+                <h3 class="public ">$beautifullIndentMaxSize</h3>
+                <pre class="signature">$beautifullIndentMaxSize : array</pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                array
+                &mdash; Array containing the max size of each array                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/traits.PrettyOutputTrait.html"><div class="path-wrapper">\traits\PrettyOutputTrait</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_chatService" name="property_chatService" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$chatService</h3>
+                <pre class="signature">$chatService : string</pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                string
+                &mdash; The chat service name                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_server" name="property_server" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$server</h3>
+                <pre class="signature">$server : array</pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                array
+                &mdash; The server info                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_savingDir" name="property_savingDir" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$savingDir</h3>
+                <pre class="signature">$savingDir : string</pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                string
+                &mdash; The absolute path from the lib path where conversations will be stored                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_maxMessagesPerFile" name="property_maxMessagesPerFile" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$maxMessagesPerFile</h3>
+                <pre class="signature">$maxMessagesPerFile : integer</pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                integer
+                &mdash; The maximum number of messages per file saved                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_roomsName" name="property_roomsName" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$roomsName</h3>
+                <pre class="signature">$roomsName : array&lt;mixed,string&gt;</pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                array&lt;mixed,string&gt;
+                &mdash; Array containing all the rooms name that exists                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_roomsNamePath" name="property_roomsNamePath" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$roomsNamePath</h3>
+                <pre class="signature">$roomsNamePath : string</pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                string
+                &mdash; The path of the file storing the list of rooms name                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_usersRooms" name="property_usersRooms" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$usersRooms</h3>
+                <pre class="signature">$usersRooms : array&lt;mixed,string&gt;</pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                array&lt;mixed,string&gt;
+                &mdash; All rooms where users are connected to indexed by their socketHash                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="property_rooms" name="property_rooms" class="anchor"></a>
+            <article class="property">
+                <h3 class="private ">$rooms</h3>
+                <pre class="signature">$rooms : array</pre>
+                <p><em></em></p>
+                
+
+                                <h4>Type</h4>
+                array
+                &mdash; Rooms live sessions
+
+array(
+    &#039;room name&#039; =&gt; array(
+        &#039;users&#039;        =&gt; array(userHash1 =&gt; user, userHash2 =&gt; user, ...),
+        &#039;pseudonyms&#039;   =&gt; array(userHash1 =&gt; pseudonym1, userHash2 =&gt; pseudonym2, ...)
+        &#039;usersRights&#039;  =&gt; array(pseudonym1 =&gt; UsersChatRights, pseudonym2 =&gt; UsersChatRights, ...)
+        &#039;creator&#039;      =&gt; User,
+        &#039;type&#039;         =&gt; &#039;public&#039; || &#039;private&#039;,
+        &#039;password&#039;     =&gt; &#039;password&#039;,
+        &#039;creationDate&#039; =&gt; DateTime,
+        &#039;maxUsers&#039;     =&gt; integer,
+        &#039;usersBanned&#039;  =&gt; array(
+            &#039;ip&#039;        =&gt; ipAddress,
+            &#039;pseudonym&#039; =&gt; the banned user pseudonym,
+            &#039;admin&#039;     =&gt; the admin pseudonym who banned the user,
+            &#039;reason&#039;    =&gt; the reason of the ban,
+            &#039;date&#039;      =&gt; the banned timestamp
+        ),
+        &#039;historic&#039;     =&gt; array(
+            &#039;part&#039;          =&gt; the part number,
+            &#039;conversations&#039; =&gt; array(
+                &#039;text&#039; =&gt; the text message,
+                &#039;time&#039; =&gt; the message sent time,
+                &#039;from&#039; =&gt; the pseudonym of the message owner,
+                &#039;to&#039;   =&gt; the pseudonym of the message reciever or &#039;all&#039;
+            )
+        )
+    )
+)                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                            
+                                    <a id="methods" name="methods"></a>
+            <div class="row-fluid">
+                <div class="span8 content class"><h2>Methods</h2></div>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setIfIsSet" name="method_setIfIsSet" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setIfIsSet()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setIfIsSet(mixed  <span class="argument">$variable</span>, mixed  <span class="argument">$value</span>) </pre>
+                <p><em>Set a value to a variable if the value is set or set a default value instead if a default value is defined</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$variable </td>
+                                <td><p>The variable to set the value</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$value </td>
+                                <td><p>The value to set</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                            <span class="label label-info">static</span>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/traits.ShortcutsTrait.html"><div class="path-wrapper">\traits\ShortcutsTrait</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setIfIsSetAndTrim" name="method_setIfIsSetAndTrim" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">setIfIsSetAndTrim()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setIfIsSetAndTrim(mixed  <span class="argument">$variable</span>, mixed  <span class="argument">$value</span>) </pre>
+                <p><em>Set a trimed value to a variable if the value is set or set a default value instead if a default value is defined</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$variable </td>
+                                <td><p>The variable to set the value</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$value </td>
+                                <td><p>The value to set</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/traits.ShortcutsTrait.html"><div class="path-wrapper">\traits\ShortcutsTrait</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_inSubArray" name="method_inSubArray" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">inSubArray()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">inSubArray(mixed  <span class="argument">$needle</span>, array  <span class="argument">$haystack</span>, string  <span class="argument">$key</span>) : boolean</pre>
+                <p><em>Perform an in_array research for each specified sub-array</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$needle </td>
+                                <td><p>The value to research</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$haystack </td>
+                                <td><p>The array to perform the research</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$key </td>
+                                <td><p>The sub-array key</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                            &mdash; <p>True if the value is found else false</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/traits.ShortcutsTrait.html"><div class="path-wrapper">\traits\ShortcutsTrait</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_smartAlign" name="method_smartAlign" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">smartAlign()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">smartAlign(string  <span class="argument">$value</span>, array&lt;mixed,string&gt;|array&lt;mixed,array&gt;  <span class="argument">$arrays</span>, integer  <span class="argument">$extraSize</span>, integer  <span class="argument">$position = STR_PAD_RIGHT</span>) : string</pre>
+                <p><em>Return the value with the exact number of right extra spaces to keep all the values align</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$value </td>
+                                <td><p>The value to print</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>array&lt;mixed,string&gt;|array&lt;mixed,array&gt;</td>
+                                <td>$arrays </td>
+                                <td><p>The array of values to align the value with (can be an array of array)</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>integer</td>
+                                <td>$extraSize </td>
+                                <td><p>An extra size to add to the max value size of the category</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>integer</td>
+                                <td>$position </td>
+                                <td><p>The position to align as str_pad constant DEFAULT STR_PAD_RIGHT</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; <p>The formatted value with extra spaces</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/traits.PrettyOutputTrait.html"><div class="path-wrapper">\traits\PrettyOutputTrait</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_prettyArray" name="method_prettyArray" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">prettyArray()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">prettyArray(array  <span class="argument">$array</span>, integer  <span class="argument">$depth = 1</span>) : string</pre>
+                <p><em>Format an array in a pretty indented output string</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array</td>
+                                <td>$array </td>
+                                <td><p>The array to format</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>integer</td>
+                                <td>$depth </td>
+                                <td><p>OPTIONAL the array values depth DEFAULT 1</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; <p>The array as a pretty string</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/traits.PrettyOutputTrait.html"><div class="path-wrapper">\traits\PrettyOutputTrait</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_formatVariable" name="method_formatVariable" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">formatVariable()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">formatVariable(mixed  <span class="argument">$variable</span>, integer  <span class="argument">$depth = 1</span>) : string</pre>
+                <p><em>Return the variable in a formatted string with type and value</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>mixed</td>
+                                <td>$variable </td>
+                                <td><p>The variable (can be any type)</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>integer</td>
+                                <td>$depth </td>
+                                <td><p>OPTIONAL the array values depth for the prettyArray method DEFAULT 1</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; <p>The variable in a formatted string</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/traits.PrettyOutputTrait.html"><div class="path-wrapper">\traits\PrettyOutputTrait</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getMaxSize" name="method_getMaxSize" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">getMaxSize()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getMaxSize(array  <span class="argument">$array</span>) : integer</pre>
+                <p><em>Get the max size of a array</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array</td>
+                                <td>$array </td>
+                                <td><p>The array</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    integer
+                                            &mdash; <p>The max size</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/traits.PrettyOutputTrait.html"><div class="path-wrapper">\traits\PrettyOutputTrait</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_md5Array" name="method_md5Array" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">md5Array()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">md5Array(array  <span class="argument">$array</span>, boolean  <span class="argument">$sort = true</span>) : string</pre>
+                <p><em>Get the md5 hash of an array</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array</td>
+                                <td>$array </td>
+                                <td><p>The array to hash</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>boolean</td>
+                                <td>$sort </td>
+                                <td><p>If the array should be sorted before hashing DEFAULT true</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; <p>The md5 hash</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/traits.PrettyOutputTrait.html"><div class="path-wrapper">\traits\PrettyOutputTrait</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method___construct" name="method___construct" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">__construct()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">__construct(\classes\websocket\services\MemoryStream  <span class="argument">$stream</span>, \classes\websocket\services\Log  <span class="argument">$log</span>) </pre>
+                <p><em>Constructor that sets the WebSocket server adress and create en empty default room</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>\classes\websocket\services\MemoryStream</td>
+                                <td>$stream </td>
+                                <td><p>A stream with the server</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>\classes\websocket\services\Log</td>
+                                <td>$log </td>
+                                <td><p>Logger object</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_process" name="method_process" class="anchor"></a>
+            <article class="method">
+                <h3 class="public ">process()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">process(array  <span class="argument">$data</span>, array  <span class="argument">$client</span>) </pre>
+                <p><em>Method to recieves data from the WebSocket server</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array</td>
+                                <td>$data </td>
+                                <td><p>JSON decoded client data</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$client </td>
+                                <td><p>The client information [Connection, User] array pair</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setMaxSize" name="method_setMaxSize" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">setMaxSize()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setMaxSize(array&lt;mixed,string&gt;  <span class="argument">$strings = array()</span>, integer  <span class="argument">$minSize</span>, string  <span class="argument">$arrayHash = null</span>) </pre>
+                <p><em>Process the max value size of a category</em></p>
+                <p>If the category is processed and the array didn't change, the category is not reprocessed</p>
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array&lt;mixed,string&gt;</td>
+                                <td>$strings </td>
+                                <td><p>The array to calculate max size of</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>integer</td>
+                                <td>$minSize </td>
+                                <td><p>OPTIONAL The minium size DEFAULT 0</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$arrayHash </td>
+                                <td><p>OPTIONAL The already calculated array hash DEFAULT null</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/traits.PrettyOutputTrait.html"><div class="path-wrapper">\traits\PrettyOutputTrait</div></a></dd>
+                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_treatDataFromServer" name="method_treatDataFromServer" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">treatDataFromServer()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">treatDataFromServer(array  <span class="argument">$data</span>) </pre>
+                <p><em>Treat the data sent from the server (not from the clients)</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array</td>
+                                <td>$data </td>
+                                <td><p>JSON decoded server data</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_connectUser" name="method_connectUser" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">connectUser()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">connectUser(array  <span class="argument">$client</span>, array  <span class="argument">$data</span>) </pre>
+                <p><em>Connect a user to one chat room as a registered or a guest user</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array</td>
+                                <td>$client </td>
+                                <td><p>The client information [Connection, User] array pair</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$data </td>
+                                <td><p>JSON decoded client data</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                                                            <p>to test</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_createRoom" name="method_createRoom" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">createRoom()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">createRoom(array  <span class="argument">$client</span>, array  <span class="argument">$data</span>) </pre>
+                <p><em>Create a chat room by an authenticated user request</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array</td>
+                                <td>$client </td>
+                                <td><p>The client information [Connection, User] array pair</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$data </td>
+                                <td><p>JSON decoded client data</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                                                            <p>to test</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_sendMessage" name="method_sendMessage" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">sendMessage()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">sendMessage(array  <span class="argument">$client</span>, array  <span class="argument">$data</span>) </pre>
+                <p><em>Send a public message to all the users in the room or a private message to one user in the room</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array</td>
+                                <td>$client </td>
+                                <td><p>The client information [Connection, User] array pair</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$data </td>
+                                <td><p>JSON decoded client data</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                                                            <p>to test</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getHistoric" name="method_getHistoric" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">getHistoric()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getHistoric(array  <span class="argument">$client</span>, array  <span class="argument">$data</span>) </pre>
+                <p><em>Get the next chat conversation historic part of a room</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array</td>
+                                <td>$client </td>
+                                <td><p>The client information [Connection, User] array pair</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$data </td>
+                                <td><p>JSON decoded client data</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                                                            <p>to test</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_kickUser" name="method_kickUser" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">kickUser()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">kickUser(array  <span class="argument">$client</span>, array  <span class="argument">$data</span>) </pre>
+                <p><em>Kick a user from a room</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array</td>
+                                <td>$client </td>
+                                <td><p>The client information [Connection, User] array pair</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$data </td>
+                                <td><p>JSON decoded client data</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                                                            <p>to test</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_banUser" name="method_banUser" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">banUser()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">banUser(array  <span class="argument">$client</span>, array  <span class="argument">$data</span>) </pre>
+                <p><em>Ban a user from a room</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array</td>
+                                <td>$client </td>
+                                <td><p>The client information [Connection, User] array pair</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$data </td>
+                                <td><p>JSON decoded client data</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                                                            <p>to test</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_updateRoomUserRight" name="method_updateRoomUserRight" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">updateRoomUserRight()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">updateRoomUserRight(array  <span class="argument">$client</span>, array  <span class="argument">$data</span>) </pre>
+                <p><em>Update a user right for a room</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array</td>
+                                <td>$client </td>
+                                <td><p>The client information [Connection, User] array pair</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$data </td>
+                                <td><p>JSON decoded client data</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                                                            <p>to test</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setRoomInfo" name="method_setRoomInfo" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">setRoomInfo()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setRoomInfo(array  <span class="argument">$client</span>, array  <span class="argument">$data</span>) </pre>
+                <p><em>Change a room name / password</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array</td>
+                                <td>$client </td>
+                                <td><p>The client information [Connection, User] array pair</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$data </td>
+                                <td><p>JSON decoded client data</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                                                            <p>to test</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_disconnectUserFromRoom" name="method_disconnectUserFromRoom" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">disconnectUserFromRoom()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">disconnectUserFromRoom(array  <span class="argument">$client</span>, array  <span class="argument">$data</span>) </pre>
+                <p><em>Disconnet a user from a room he was connected to</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array</td>
+                                <td>$client </td>
+                                <td><p>The client information [Connection, User] array pair</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$data </td>
+                                <td><p>JSON decoded client data</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            todo
+                        </th>
+                        <td>
+                                                                                            <p>to test</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getRoomsInfo" name="method_getRoomsInfo" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">getRoomsInfo()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getRoomsInfo(array  <span class="argument">$client</span>) </pre>
+                <p><em>Get the rooms basic information (name, type, usersMax, usersConnected)</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array</td>
+                                <td>$client </td>
+                                <td><p>The client information [Connection, User] array pair</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_updateRoomUsers" name="method_updateRoomUsers" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">updateRoomUsers()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">updateRoomUsers(array  <span class="argument">$client</span>, string  <span class="argument">$roomName</span>) </pre>
+                <p><em>Update the connected users list in a room</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array</td>
+                                <td>$client </td>
+                                <td><p>The client information [Connection, User] array pair</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$roomName </td>
+                                <td><p>The room name</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_updateRoomUsersRights" name="method_updateRoomUsersRights" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">updateRoomUsersRights()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">updateRoomUsersRights(string  <span class="argument">$roomName</span>) </pre>
+                <p><em>Update the connected users rights list in a room</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$roomName </td>
+                                <td><p>The room name</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_updateRoomUsersBanned" name="method_updateRoomUsersBanned" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">updateRoomUsersBanned()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">updateRoomUsersBanned(string  <span class="argument">$roomName</span>) </pre>
+                <p><em>Update the ip banned list in a room</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$roomName </td>
+                                <td><p>The room name</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_disconnectUserFromRoomAction" name="method_disconnectUserFromRoomAction" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">disconnectUserFromRoomAction()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">disconnectUserFromRoomAction(string  <span class="argument">$userHash</span>, string  <span class="argument">$roomName</span>) </pre>
+                <p><em>Disconnect a user from a room</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$userHash </td>
+                                <td><p>The user hash</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$roomName </td>
+                                <td><p>The room name</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_disconnectUser" name="method_disconnectUser" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">disconnectUser()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">disconnectUser(array  <span class="argument">$client</span>) </pre>
+                <p><em>Disconnet a user from all the chat he was connected to</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array</td>
+                                <td>$client </td>
+                                <td><p>The client information [Connection, User] array pair</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_addUserRoom" name="method_addUserRoom" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">addUserRoom()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">addUserRoom(string  <span class="argument">$userHash</span>, string  <span class="argument">$roomName</span>) </pre>
+                <p><em>Add a room to the user when he is connected to this room</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$userHash </td>
+                                <td><p>The user socket hash</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$roomName </td>
+                                <td><p>The room name</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_checkPrivateRoomPassword" name="method_checkPrivateRoomPassword" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">checkPrivateRoomPassword()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">checkPrivateRoomPassword(string  <span class="argument">$roomName</span>, string  <span class="argument">$roomPassword</span>) : boolean</pre>
+                <p><em>Check if a user has the right to enter a private room</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$roomName </td>
+                                <td><p>The room name</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$roomPassword </td>
+                                <td><p>The room password the user sent</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                            &mdash; <p>True if the user have the right to enter the room else false</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_pseudonymIsInRoom" name="method_pseudonymIsInRoom" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">pseudonymIsInRoom()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">pseudonymIsInRoom(string  <span class="argument">$pseudonym</span>, string  <span class="argument">$roomName</span>) : boolean</pre>
+                <p><em>Check if a pseudonym is already used in the defined room</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$pseudonym </td>
+                                <td><p>The pseudonym</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$roomName </td>
+                                <td><p>The room name to connect to</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                            &mdash; <p>True if the pseudonym exists in the room else false</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_isPseudonymUsabled" name="method_isPseudonymUsabled" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">isPseudonymUsabled()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">isPseudonymUsabled(string  <span class="argument">$pseudonym</span>, string  <span class="argument">$roomName</span>) : boolean</pre>
+                <p><em>Check if a pseudonym is usabled to be used in a room (not already in the room and not used by a registered user)</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$pseudonym </td>
+                                <td><p>The pseudonym</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$roomName </td>
+                                <td><p>The room name to connect to</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                            &mdash; <p>True if the pseudonym is usabled else false</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getUserHashByPseudonym" name="method_getUserHashByPseudonym" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">getUserHashByPseudonym()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getUserHashByPseudonym(string  <span class="argument">$roomName</span>, string  <span class="argument">$pseudonym</span>) : string|boolean</pre>
+                <p><em>Get the user hash by his pseudonym and the room name where he&#039;s connected</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$roomName </td>
+                                <td><p>The room name</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$pseudonym </td>
+                                <td><p>The user pseudonym</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    string|boolean
+                                            &mdash; <p>The user hash or false if an the user cannot be found</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_isRegistered" name="method_isRegistered" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">isRegistered()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">isRegistered(string  <span class="argument">$roomName</span>, string  <span class="argument">$pseudonym</span>) : boolean</pre>
+                <p><em>Tell if a user is registered or not</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$roomName </td>
+                                <td><p>The room name</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$pseudonym </td>
+                                <td><p>The user pseudonym</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    boolean
+                                            &mdash; <p>True if the user is registered else false</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_sendMessageToUser" name="method_sendMessageToUser" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">sendMessageToUser()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">sendMessageToUser(array  <span class="argument">$clientFrom</span>, array  <span class="argument">$clientTo</span>, string  <span class="argument">$message</span>, string  <span class="argument">$roomName</span>, string  <span class="argument">$type</span>, string  <span class="argument">$date</span>) </pre>
+                <p><em>Send a message to a user</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array</td>
+                                <td>$clientFrom </td>
+                                <td><p>The client to send the message from array(Connection, User)</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$clientTo </td>
+                                <td><p>The client to send the message to array(Connection, User)</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$message </td>
+                                <td><p>The text message</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$roomName </td>
+                                <td><p>The room name</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$type </td>
+                                <td><p>The message type ('public' || 'private')</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$date </td>
+                                <td><p>The server date at the moment the message was processed (Y-m-d H:i:s)</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_sendMessageToRoom" name="method_sendMessageToRoom" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">sendMessageToRoom()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">sendMessageToRoom(array  <span class="argument">$clientFrom</span>, string  <span class="argument">$message</span>, string  <span class="argument">$roomName</span>, string  <span class="argument">$type</span>, string  <span class="argument">$date</span>) </pre>
+                <p><em>Send a message to all the room users</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array</td>
+                                <td>$clientFrom </td>
+                                <td><p>The client to send the message from array(Connection, User)</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$message </td>
+                                <td><p>The text message</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$roomName </td>
+                                <td><p>The room name</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$type </td>
+                                <td><p>The message type ('public' || 'private')</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$date </td>
+                                <td><p>The server date at the moment the message was processed (Y-m-d H:i:s)</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_filterConversations" name="method_filterConversations" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">filterConversations()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">filterConversations(array  <span class="argument">$conversations</span>, string  <span class="argument">$pseudonym</span>) : array</pre>
+                <p><em>Filter conversations to delete private message which must not be viewed by the user and parse the content</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>array</td>
+                                <td>$conversations </td>
+                                <td><p>The conversations</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$pseudonym </td>
+                                <td><p>The user pseudonym</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                            &mdash; <p>The filtered conversations</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_saveRoom" name="method_saveRoom" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">saveRoom()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">saveRoom(string  <span class="argument">$roomName</span>) </pre>
+                <p><em>Store a room in a file to recover it later</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$roomName </td>
+                                <td><p>The room name</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getRoomInfo" name="method_getRoomInfo" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">getRoomInfo()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getRoomInfo(string  <span class="argument">$roomName</span>) : array</pre>
+                <p><em>Get the room information stored in a JSON file</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$roomName </td>
+                                <td><p>The room name</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    array
+                                            &mdash; <p>The JSON decoded room information as associative array</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_loadRoom" name="method_loadRoom" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">loadRoom()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">loadRoom(string  <span class="argument">$roomName</span>) </pre>
+                <p><em>Load a room that was stored in a file</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$roomName </td>
+                                <td><p>The room name</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_updateHistoric" name="method_updateHistoric" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">updateHistoric()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">updateHistoric(string  <span class="argument">$roomName</span>, string  <span class="argument">$time</span>, string  <span class="argument">$message</span>, string  <span class="argument">$from</span>, string  <span class="argument">$to</span>) </pre>
+                <p><em>Update a conversation historic with a new message</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$roomName </td>
+                                <td><p>The room name</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$time </td>
+                                <td><p>The server message sent time</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$message </td>
+                                <td><p>The text message</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$from </td>
+                                <td><p>The pseudonym of the user message owner</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$to </td>
+                                <td><p>The pseudonym of the user message reviever or 'all'</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_saveHistoric" name="method_saveHistoric" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">saveHistoric()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">saveHistoric(string  <span class="argument">$roomName</span>) </pre>
+                <p><em>Store the conversation historic into a JSON text file</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$roomName </td>
+                                <td><p>The room name</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_loadHistoric" name="method_loadHistoric" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">loadHistoric()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">loadHistoric(string  <span class="argument">$roomName</span>, integer  <span class="argument">$part</span>) </pre>
+                <p><em>Load an historic</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$roomName </td>
+                                <td><p>The room name</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>integer</td>
+                                <td>$part </td>
+                                <td><p>The historic part</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getHistoricPart" name="method_getHistoricPart" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">getHistoricPart()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getHistoricPart(string  <span class="argument">$roomName</span>, integer  <span class="argument">$part</span>) : array|false</pre>
+                <p><em>Get a conversation historic part</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$roomName </td>
+                                <td><p>The room name</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>integer</td>
+                                <td>$part </td>
+                                <td><p>The conversation part</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    array|false
+                                            &mdash; <p>The conversation historic as an array or false if an error occured</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getLastPartNumber" name="method_getLastPartNumber" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">getLastPartNumber()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getLastPartNumber(string  <span class="argument">$roomName</span>) : integer</pre>
+                <p><em>Get the last part number of room historic</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$roomName </td>
+                                <td><p>The room name</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    integer
+                                            &mdash; <p>The last part number</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setLastPartNumber" name="method_setLastPartNumber" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">setLastPartNumber()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setLastPartNumber(string  <span class="argument">$roomName</span>, integer  <span class="argument">$part</span>) </pre>
+                <p><em>Set the last part number of room historic</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$roomName </td>
+                                <td><p>The room name</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>integer</td>
+                                <td>$part </td>
+                                <td><p>The last part number</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getRoomsName" name="method_getRoomsName" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">getRoomsName()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getRoomsName() : array&lt;mixed,string&gt;</pre>
+                <p><em>Get the rooms name</em></p>
+                
+
+                
+                
+                                    <h4>Returns</h4>
+                    array&lt;mixed,string&gt;
+                                            &mdash; <p>The rooms name</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_setRoomsName" name="method_setRoomsName" class="anchor"></a>
+            <article class="method">
+                <h3 class="private ">setRoomsName()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">setRoomsName() </pre>
+                <p><em>Update the rooms name</em></p>
+                
+
+                
+                
+                				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                            </table>
+        </aside>
+    </div>
+
+                                    </div>
+    </section>
+
+    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="source-view-label">ChatService.php</h3>
+        </div>
+        <div class="modal-body">
+            <pre data-src="../files/classes\websocket\services\ChatService.php.txt" class="language-php line-numbers"></pre>
+        </div>
+    </div>
+
+    <footer class="row-fluid">
+        <section class="span10 offset2">
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <section class="row-fluid footer-sections">
+                        <section class="span4">
+                                                        <h1><i class="icon-code"></i></h1>
+                            <div>
+                                <ul>
+                                                                            <li><a href="../namespaces/abstracts.html">\abstracts</a></li>
+                                                                            <li><a href="../namespaces/classes.html">\classes</a></li>
+                                                                            <li><a href="../namespaces/interfaces.html">\interfaces</a></li>
+                                                                            <li><a href="../namespaces/tests.html">\tests</a></li>
+                                                                            <li><a href="../namespaces/traits.html">\traits</a></li>
+                                                                    </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-bar-chart"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../graphs/class.html">Class Hierarchy Diagram</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                        <section class="span4">
+                                                        <h1><i class="icon-pushpin"></i></h1>
+                            <div>
+                                <ul>
+                                    <li><a href="../reports/errors.html">Errors</a></li>
+                                    <li><a href="../reports/markers.html">Markers</a></li>
+                                </ul>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </section>
+            <section class="row-fluid">
+                <section class="span10 offset1">
+                    <hr />
+                    Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
+                    on March 15th, 2016 at 00:28.
+                </section>
+            </section>
+        </section>
+    </footer>
+</div>
+
+</body>
+</html>
